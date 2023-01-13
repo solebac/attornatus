@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.attornatus.avaliacao.entities.Pessoa;
+import com.attornatus.avaliacao.resources.dto.DetalhesPessoaEnderecoDto;
 import com.attornatus.avaliacao.resources.dto.PessoaDto;
+import com.attornatus.avaliacao.resources.dto.PessoaEnderecoMainDto;
 import com.attornatus.avaliacao.services.PessoaService;
 
 @RestController
@@ -38,6 +40,19 @@ public class PessoaResource {
 	public ResponseEntity<PessoaDto> findById(@PathVariable Long id){
 		Pessoa obj = services.findById(id);
 		return ResponseEntity.ok().body(new PessoaDto(obj));
+	}
+	
+	@GetMapping("/pessoas/enderecoprincipal/{id}")
+	public ResponseEntity<PessoaEnderecoMainDto> consultaEnderecosPrincipal(@PathVariable Long id){
+		PessoaEnderecoMainDto dto = services.pessoaEnderecoPrincipal(id);
+		return ResponseEntity.ok().body(dto);
+	}
+	
+	@GetMapping("/pessoas/enderecodetalhado/{id}")
+	public ResponseEntity<DetalhesPessoaEnderecoDto> detalhesEnderecosPessoa(@PathVariable Long id){
+		DetalhesPessoaEnderecoDto dto = services.detalhes(id);
+
+		return ResponseEntity.ok().body(dto);
 	}
 	
 	@PostMapping("/pessoas")
