@@ -2,11 +2,8 @@ package com.attornatus.avaliacao.entities;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-
-import com.attornatus.avaliacao.entities.enums.StatusEndereco;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Pessoa implements Serializable {
 
@@ -15,12 +12,12 @@ public class Pessoa implements Serializable {
 	private Long id;
 	private String nome;
 	private LocalDate dataDeNascimento;
+	private List<Endereco> enderecos = new ArrayList<>();
 
 	public Pessoa() {
 	}
 
 	public Pessoa(Long id, String nome, LocalDate dataDeNascimento) {
-		super();
 		this.id = id;
 		this.nome = nome;
 		this.dataDeNascimento = dataDeNascimento;
@@ -48,6 +45,14 @@ public class Pessoa implements Serializable {
 
 	public void setDataDeNascimento(LocalDate dataDeNascimento) {
 		this.dataDeNascimento = dataDeNascimento;
+	}
+
+	public List<Endereco> getEnderecos() {
+		return enderecos;
+	}
+
+	public void setEnderecos(List<Endereco> enderecos) {
+		this.enderecos = enderecos;
 	}
 
 	@Override
