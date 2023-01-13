@@ -51,4 +51,4 @@ bash
 
 Flávio Rogério da Silva
 
-https://www.linkedin.com/in/wmazoni](https://www.linkedin.com/in/fl%C3%A1vio-rog%C3%A9rio-722a56159
+https://www.linkedin.com/in/fl%C3%A1vio-rog%C3%A9rio-722a56159 
