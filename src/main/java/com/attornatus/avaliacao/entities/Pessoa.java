@@ -31,11 +31,14 @@ public class Pessoa implements Serializable {
 	public Pessoa() {
 	}
 
-	public Pessoa(Long id, String nome, LocalDate dataDeNascimento) {
+	public Pessoa(Long id, @NotBlank String nome, @NotBlank LocalDate dataDeNascimento) {
+		super();
 		this.id = id;
 		this.nome = nome;
 		this.dataDeNascimento = dataDeNascimento;
 	}
+
+
 
 	public Long getId() {
 		return id;

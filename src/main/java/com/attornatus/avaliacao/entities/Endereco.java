@@ -26,11 +26,15 @@ public class Endereco implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	@NotBlank
+	private String logradouro;
 	private String cep;
 	private String numero;
+	
 	@Enumerated(EnumType.STRING)
 	private StatusEndereco status = StatusEndereco.CONTATO;
+	
 	@NotNull(message = "Pessoa não pode ser null")
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "pessoa_id")
@@ -39,11 +43,14 @@ public class Endereco implements Serializable {
 	public Endereco() {
 	}
 
-	public Endereco(Long id, String cep, String numero, Pessoa pessoas) {
+	public Endereco(Long id, @NotBlank String logradouro, String cep, String numero,
+			@NotNull(message = "Pessoa não pode ser null") Pessoa pessoas) {
+		super();
 		this.id = id;
+		this.logradouro = logradouro;
 		this.cep = cep;
 		this.numero = numero;
-		this.status = status;
+		this.pessoas = pessoas;
 	}
 
 	public Long getId() {
