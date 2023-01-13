@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.attornatus.avaliacao.entities.Pessoa;
 import com.attornatus.avaliacao.repositories.PessoaRepository;
+import com.attornatus.avaliacao.resources.dto.PessoaEnderecoMainDto;
 import com.attornatus.avaliacao.services.exceptions.DatabaseExceptionOwn;
 import com.attornatus.avaliacao.services.exceptions.ResourceNotFoundException;
 
@@ -60,7 +61,30 @@ public class PessoaService {
 			throw new ResourceNotFoundException(id);
 		}
 	}
+	/*Consultas especificas da Avaliação - fora do CRUD*/
+	//case 1.: Listar endereços de uma pessoa
+	public DetalhesPessoaEnderecoDto detalhes(Long id) {
+		try {
+			Pessoa obj = repository.getReferenceById(id);
+			return new DetalhesPessoaEnderecoDto(obj);
 
+		} catch (EntityNotFoundException e) {
+			throw new ResourceNotFoundException(id);
+		}
+	}
+
+	//case 2.: Listar endereço principal de uma pessoa
+	public PessoaEnderecoMainDto pessoaEnderecoPrincipal(Long id) {
+		try {
+			Pessoa obj = repository.getReferenceById(id);
+			DetalhesPessoaEnderecoDto dto = new DetalhesPessoaEnderecoDto(obj);
+			PessoaEnderecoMainDto enderecoMain = dto.getConvertEnderecoMain();
+			return enderecoMain;
+
+		} catch (EntityNotFoundException e) {
+			throw new ResourceNotFoundException(id);
+		}
+	}
 	private void updateData(Pessoa entity, Pessoa obj) {
 		entity.setNome(obj.getNome());
 		entity.setDataDeNascimento(obj.getDataDeNascimento());
