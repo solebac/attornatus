@@ -66,7 +66,8 @@ public class EnderecoService {
 	}
 
 	@Transactional
-	public Endereco update(Long id, Endereco obj) {
+	public Endereco update(Long id, EnderecoForm form) {
+		Endereco obj = form.converter(repositoryPessoa);
 		try {
 			Endereco entity = enderecoRepository.getReferenceById(id);
 			updateData(entity, obj);
