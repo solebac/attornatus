@@ -3,6 +3,8 @@ package com.attornatus.avaliacao.resources;
 import java.net.URI;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -39,7 +41,7 @@ public class PessoaResource {
 	}
 	
 	@PostMapping("/pessoas")
-	public ResponseEntity<Pessoa> insert(@RequestBody Pessoa obj){
+	public ResponseEntity<Pessoa> insert(@RequestBody @Valid Pessoa obj){
 		obj = services.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId())
 				.toUri();
@@ -53,9 +55,9 @@ public class PessoaResource {
 	}
 	
 	@PutMapping("/pessoas/{id}")
-	public ResponseEntity<Pessoa> update(@PathVariable Long id, @RequestBody Pessoa obj){
+	public ResponseEntity<PessoaDto> update(@PathVariable Long id, @RequestBody @Valid Pessoa obj){
 		obj = services.update(id, obj);
-		return ResponseEntity.ok().body(obj);
+		return ResponseEntity.ok().body(new PessoaDto(obj));
 	}
 
 }

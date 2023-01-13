@@ -15,27 +15,30 @@ import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "tb_pessoa")
-public class Pessoa implements Serializable {
+public class Pessoa implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@NotBlank
 	private String nome;
+	
 	private LocalDate dataDeNascimento;
-	@OneToMany(mappedBy = "pessoas")
-	private List<Endereco> enderecos = new ArrayList<>();
 
+	@OneToMany(mappedBy = "pessoa")
+	private List<Endereco> enderecos = new ArrayList<>();
+	
 	public Pessoa() {
 	}
 
-	public Pessoa(Long id, @NotBlank String nome, @NotBlank LocalDate dataDeNascimento) {
+
+	public Pessoa(Long id, @NotBlank String nome, LocalDate dataDeNascimento) {
 		this.id = id;
 		this.nome = nome;
 		this.dataDeNascimento = dataDeNascimento;
 	}
-
 
 
 	public Long getId() {

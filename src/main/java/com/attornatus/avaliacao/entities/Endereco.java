@@ -16,6 +16,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import com.attornatus.avaliacao.entities.enums.StatusEndereco;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "tb_endereco")
@@ -36,21 +37,23 @@ public class Endereco implements Serializable {
 	private StatusEndereco status = StatusEndereco.CONTATO;
 	
 	@NotNull(message = "Pessoa não pode ser null")
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne
 	@JoinColumn(name = "pessoa_id")
-	private Pessoa pessoas;
+	private Pessoa pessoa;
 
 	public Endereco() {
 	}
 
 	public Endereco(Long id, @NotBlank String logradouro, String cep, String numero,
-			@NotNull(message = "Pessoa não pode ser null") Pessoa pessoas) {
+			@NotNull(message = "Pessoa não pode ser null") Pessoa pessoa) {
 		this.id = id;
 		this.logradouro = logradouro;
 		this.cep = cep;
 		this.numero = numero;
-		this.pessoas = pessoas;
+		this.pessoa = pessoa;
 	}
+
+
 
 	public Long getId() {
 		return id;
@@ -58,6 +61,14 @@ public class Endereco implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getLogradouro() {
+		return logradouro;
+	}
+
+	public void setLogradouro(String logradouro) {
+		this.logradouro = logradouro;
 	}
 
 	public String getCep() {
@@ -84,12 +95,12 @@ public class Endereco implements Serializable {
 		this.status = status;
 	}
 
-	public Pessoa getPessoas() {
-		return pessoas;
+	public Pessoa getPessoa() {
+		return pessoa;
 	}
 
-	public void setPessoas(Pessoa pessoas) {
-		this.pessoas = pessoas;
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
 	}
 
 	@Override
