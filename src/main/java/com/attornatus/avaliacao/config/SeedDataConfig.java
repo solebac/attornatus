@@ -28,6 +28,7 @@ public class SeedDataConfig implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		Pessoa p1 = new Pessoa(null, "Fulano-01", LocalDate.now());
 		Pessoa p2 = new Pessoa(null, "Fulano-02", LocalDate.now());
+		Pessoa p3 = new Pessoa(null, "Flavio", LocalDate.now());
 		
 		Endereco e1 = new Endereco(null, "Rua Test-01", "12345678", "100", p1);
 		Endereco e2 = new Endereco(null, "Rua Beira Mar-02", "99345678", "101", p2);
