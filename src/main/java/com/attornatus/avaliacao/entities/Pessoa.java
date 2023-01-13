@@ -23,7 +23,6 @@ public class Pessoa implements Serializable {
 	private Long id;
 	@NotBlank
 	private String nome;
-	@NotBlank
 	private LocalDate dataDeNascimento;
 	@OneToMany(mappedBy = "pessoas")
 	private List<Endereco> enderecos = new ArrayList<>();
@@ -32,7 +31,6 @@ public class Pessoa implements Serializable {
 	}
 
 	public Pessoa(Long id, @NotBlank String nome, @NotBlank LocalDate dataDeNascimento) {
-		super();
 		this.id = id;
 		this.nome = nome;
 		this.dataDeNascimento = dataDeNascimento;

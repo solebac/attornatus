@@ -45,7 +45,6 @@ public class Endereco implements Serializable {
 
 	public Endereco(Long id, @NotBlank String logradouro, String cep, String numero,
 			@NotNull(message = "Pessoa não pode ser null") Pessoa pessoas) {
-		super();
 		this.id = id;
 		this.logradouro = logradouro;
 		this.cep = cep;
